@@ -15,6 +15,7 @@ class BaiVietController extends Controller
     public function index()
     {
         //
+        
     }
 
     /**

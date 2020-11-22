@@ -44,6 +44,7 @@ class UserController extends Controller
             'email'=>$request['email'],
             'password'=>$request['password'],
             'phone'=>$request['phone'],
+            'is_admin'=>$request['is_admin'],
         ]);
         return redirect()->route('user.tables');
     }
@@ -103,5 +104,11 @@ class UserController extends Controller
         $user=User::find($id);
         $user->delete();
         return redirect()->route('user.tables');
+    }
+
+    public function DanhSachBaiViet($id)
+    {
+        $dsBaiViet = User::find($id)->DsBaiViet;
+        return view('bai_viet_cua_user_table',['dsBaiViet'=>$dsBaiViet]);
     }
 }

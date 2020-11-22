@@ -56,23 +56,19 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
+                    <th>Tieu de</th>
+                    <th>Tac gia</th>
+                    <th>Da duyet</th>
                     <th></th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($users as $user)
+                  @foreach($dsBaiViet as $baiviet)
                   <tr>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->phone}}</td>
-                    <td>
-                      <a href=" {{ route('user.edit', [$user->id]) }} " class="btn btn-primary">Edit</a>
-                      <a href=" {{ route('user.delete', [$user->id]) }} " class="btn btn-primary">Delete</a>
-                      <a href=" {{ route('user.dsbaiviet', [$user->id]) }} " class="btn btn-primary">XemDSBV</a>
-                    </td>
+                    <td>{{$baiviet->tieu_de}}</td>
+                    <td>{{$baiviet->tac_gia}}</td>
+                    <td>{{$baiviet->da_duyet}}</td>
+
                   </tr>
                   @endforeach
                   </tbody>

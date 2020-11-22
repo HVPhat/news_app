@@ -72,6 +72,10 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
                   </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="is_admin" value="1" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Admin</label>
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
