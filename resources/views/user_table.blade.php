@@ -29,13 +29,16 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Users table</h1>
+          <div class="col-sm-3">
+            <h1>Người dùng</h1>
+          </div>
+          <div class="col-sm-3">
+            <a href="{{ route('user.add') }}"><button class="btn btn-primary" >Thêm người dùng </button> </a>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item active">Người dùng</li>
             </ol>
           </div>
         </div>
@@ -49,16 +52,16 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                <h3 class="card-title">Danh sách người dùng </h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Name</th>
+                    <th>Tên</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>SĐT</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -69,8 +72,8 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->phone}}</td>
                     <td>
-                      <a href=" {{ route('user.edit', [$user->id]) }} " class="btn btn-primary">Edit</a>
-                      <a href=" {{ route('user.delete', [$user->id]) }} " class="btn btn-primary">Delete</a>
+                      <a href=" {{ route('user.edit', [$user->id]) }} " class="btn btn-primary">Sửa</a>
+                      <a href=" {{ route('user.delete', [$user->id]) }} " class="btn btn-primary">Xóa</a>
                       <a href=" {{ route('user.dsbaiviet', [$user->id]) }} " class="btn btn-primary">XemDSBV</a>
                     </td>
                   </tr>

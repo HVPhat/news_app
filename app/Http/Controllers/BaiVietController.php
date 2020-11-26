@@ -5,6 +5,7 @@ namespace news_app\Http\Controllers;
 use news_app\BaiViet;
 use Illuminate\Http\Request;
 
+
 class BaiVietController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class BaiVietController extends Controller
     public function index()
     {
         //
-        
+
     }
 
     /**
@@ -82,5 +83,17 @@ class BaiVietController extends Controller
     public function destroy(BaiViet $baiViet)
     {
         //
+    }
+    
+    public function TacGia()
+    {
+        $tacGia = BaiViet::find(2)->TacGia;
+        return ($tacGia);
+    }
+
+    public function ChuDe($id)
+    {
+        $chuDe = BaiViet::find($id)->ChuDe;
+        return ($chuDe);
     }
 }

@@ -24,6 +24,9 @@ to get the desired effect
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ route('logout') }}" class="nav-link">Logout</a>
+      </li>
     </ul>
 
     <!-- SEARCH FORM -->
@@ -150,7 +153,7 @@ to get the desired effect
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"></a>
         </div>
       </div>
 
@@ -167,26 +170,12 @@ to get the desired effect
             </a>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="{{ request()->is('user/*') ? 'nav-link active' : 'nav-link' }}">
+            <a href="{{ route('user.tables') }}" class="{{ request()->is('user/*') ? 'nav-link active' : 'nav-link' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 User
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="{{ route('user.add') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add User</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('user.tables') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User Table</p>
-                </a>
-            </ul>
           </li>
         </ul>
       </nav>

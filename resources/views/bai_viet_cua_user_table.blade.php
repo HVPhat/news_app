@@ -68,7 +68,7 @@
                     <td>{{$baiviet->tieu_de}}</td>
                     <td>{{$baiviet->tac_gia}}</td>
                     <td>{{$baiviet->da_duyet}}</td>
-
+                    <td><a href="{{ route('baiviet.chude', [$baiviet->id]) }}"> <button class="btn btn-primary"> Chu de bai viet </button></a> </td>
                   </tr>
                   @endforeach
                   </tbody>

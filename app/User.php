@@ -41,6 +41,6 @@ class User extends Authenticatable
     ];
 
     public function DsBaiViet(){
-        return $this->hasMany('news_app\BaiViet', 'tac_gia');
+        return $this->hasMany('news_app\BaiViet','tac_gia', 'id');
     }
 }

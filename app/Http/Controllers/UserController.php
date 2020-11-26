@@ -15,6 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //
+        //$user=Auth::user();
         $users=User::all();
         return view('user_table', ['users'=>$users]);
     }
