@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index')->name('login');
 Route::get('/login', 'HomeController@index')->name('login');
 Route::post('/login', 'HomeController@login')->name('login');
 Route::get('/', 'HomeController@logout')->name('logout');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
@@ -36,4 +37,25 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/baiviet/tacgia/','BaiVietController@TacGia')->name('baiviet.tacgia');
     //Lấy ra chủ đề của bài viết 
     Route::get('/baiviet/chude/{id}','BaiVietController@ChuDe')->name('baiviet.chude');
+
+    Route::get('/chude/tables','ChuDeController@index')->name('chude.tables');
+
+    Route::get('/chude/add','ChuDeController@create')->name('chude.add');
+    
+    Route::post('/chude/store','ChuDeController@store')->name('chude.store');
+    
+    Route::get('/chude/edit/{id}','ChuDeController@edit')->name('chude.edit');
+
+    Route::post('/chude/update/{id}','ChuDeController@update')->name('chude.update');
+
+    Route::get('/chude/delete/{id}','ChuDeController@destroy')->name('chude.delete');
+
+    Route::get('/baiviet/tables','BaiVietController@index')->name('baiviet.tables');
+
+    Route::get('/baocao/baiviet','BaoCaoBaiVietController@index')->name('baocaobaiviet.tables');
+
+    Route::get('/baocao/baiviet/{id}','BaoCaoBaiVietController@show')->name('baocaobaiviet.chitietbaocao');
+    
+    Route::get('/baocao/baiviet/xoa/{id}','BaoCaoBaiVietController@destroy')->name('baocaobaiviet.xoabaocao');
+
 });

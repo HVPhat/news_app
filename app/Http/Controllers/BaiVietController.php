@@ -16,7 +16,8 @@ class BaiVietController extends Controller
     public function index()
     {
         //
-
+        $baiViet=BaiViet::find(2)->TacGia;
+        return $baiViet;
     }
 
     /**

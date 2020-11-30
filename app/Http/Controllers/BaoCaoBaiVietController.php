@@ -3,7 +3,10 @@
 namespace news_app\Http\Controllers;
 
 use news_app\BaoCaoBaiViet;
+use news_app\BaiViet;
 use Illuminate\Http\Request;
+use DB;
+use Carbon\Carbon;
 
 class BaoCaoBaiVietController extends Controller
 {
@@ -15,6 +18,10 @@ class BaoCaoBaiVietController extends Controller
     public function index()
     {
         //
+        $baiViets=DB::select('select distinct bai_viet,tieu_de from bai_viets,bao_cao_bai_viets
+                              where bao_cao_bai_viets.deleted_at is null and bai_viets.id = bao_cao_bai_viets.bai_viet');
+
+        return view('bao_cao_bai_viet_table', ['baiViets'=>$baiViets]);
     }
 
     /**
@@ -44,9 +51,21 @@ class BaoCaoBaiVietController extends Controller
      * @param  \news_app\BaoCaoBaiViet  $baoCaoBaiViet
      * @return \Illuminate\Http\Response
      */
-    public function show(BaoCaoBaiViet $baoCaoBaiViet)
+    public function show($id_bai_viet)
     {
         //
+        //Lấy toàn bộ bảng ghi trong bảng báo cáo của bài viếtv có cột bai_viet = $id_bai_viet
+        $baoCaos=DB::select('select * from bao_cao_bai_viets,users
+                              where bao_cao_bai_viets.deleted_at is null and bao_cao_bai_viets.nguoi_dung = users.id and bao_cao_bai_viets.bai_viet = '.$id_bai_viet );
+
+        //Lấy nội dung của bài viết bị báo cáo 
+        $baiViet=BaiViet::find($id_bai_viet);
+
+        $data=[
+            'baoCaos'=>$baoCaos,
+            'baiViet'=>$baiViet
+        ];
+        return view('chi_tiet_bao_cao_bai_viet',$data);
     }
 
     /**
@@ -78,8 +97,14 @@ class BaoCaoBaiVietController extends Controller
      * @param  \news_app\BaoCaoBaiViet  $baoCaoBaiViet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BaoCaoBaiViet $baoCaoBaiViet)
+    public function destroy($baiViet)
     {
         //
+        DB::table('bao_cao_bai_viets')->whereIn('bai_viet', [$baiViet])
+            ->update([
+                'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]);
+        
+            return redirect()->route('baocaobaiviet.tables');
     }
 }

@@ -15,6 +15,8 @@ class ChuDeController extends Controller
     public function index()
     {
         //
+        $chuDes=ChuDe::all();
+        return view('chu_de_table', ['chuDes'=>$chuDes]);
     }
 
     /**
@@ -25,6 +27,7 @@ class ChuDeController extends Controller
     public function create()
     {
         //
+        return view('add_chu_de');
     }
 
     /**
@@ -36,6 +39,10 @@ class ChuDeController extends Controller
     public function store(Request $request)
     {
         //
+        $user=CHuDe::create([
+            'ten_chu_de'=>$request['ten_chu_de'],
+        ]);
+        return redirect()->route('chude.tables');
     }
 
     /**

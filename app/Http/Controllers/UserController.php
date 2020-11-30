@@ -45,7 +45,7 @@ class UserController extends Controller
             'email'=>$request['email'],
             'password'=>$request['password'],
             'phone'=>$request['phone'],
-            'is_admin'=>$request['is_admin'],
+            'is_admin'=>$request['is_admin']
         ]);
         return redirect()->route('user.tables');
     }

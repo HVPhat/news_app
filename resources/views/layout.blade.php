@@ -153,7 +153,9 @@ to get the desired effect
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"></a>
+          <a href="#" class="d-block">
+            {{ auth()->user()->name }}
+          </a>
         </div>
       </div>
 
@@ -173,7 +175,34 @@ to get the desired effect
             <a href="{{ route('user.tables') }}" class="{{ request()->is('user/*') ? 'nav-link active' : 'nav-link' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                User
+                Người dùng
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="{{ route('chude.tables') }}" class="{{ request()->is('chude/*') ? 'nav-link active' : 'nav-link' }}">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Chủ đề
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item has-treeview">
+            <a href="{{ route('baiviet.tables') }}" class="{{ request()->is('chude/*') ? 'nav-link active' : 'nav-link' }}">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Bài viết 
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item has-treeview">
+            <a href="{{ route('baocaobaiviet.tables') }}" class="{{ request()->is('baocao/*') ? 'nav-link active' : 'nav-link' }}">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Báo cáo bài viết 
               </p>
             </a>
           </li>
