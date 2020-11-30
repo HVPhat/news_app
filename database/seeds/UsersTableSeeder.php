@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name'=> 'Huỳnh Vinh Phát',
             'email'=>'1234567@gmail.com',
-            'phone'=>rand(1000000000,9999999999),
+            'phone'=>'0909000000',
             'is_admin'=>rand(0,1),
             'password'=>bcrypt('123456'),
 
