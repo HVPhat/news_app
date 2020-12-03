@@ -189,11 +189,11 @@ to get the desired effect
             </a>
           </li>
           
-          <li class="nav-item has-treeview">
-            <a href="{{ route('baiviet.tables') }}" class="{{ request()->is('chude/*') ? 'nav-link active' : 'nav-link' }}">
-              <i class="nav-icon fas fa-table"></i>
+          <li class="nav-item">
+            <a href="{{ route('post.tables') }}" class="{{ request()->is('baiviet/*') ? 'nav-link active' : 'nav-link' }}">
+              <i class="nav-icon fas fa-file"></i>
               <p>
-                Bài viết 
+                Bài Viết
               </p>
             </a>
           </li>
@@ -206,6 +206,7 @@ to get the desired effect
               </p>
             </a>
           </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
