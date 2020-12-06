@@ -71,7 +71,7 @@
                     <td>{{$post->tieu_de}}</td>
                     <td>{{$post->chu_de}}</td>
                     <td><img src="{{url('/img/')}}/{{$post->hinh_anh}}" alt="Image" width="150" height="100"/></td>
-                    <td>{{$post->noi_dung}}</td>
+                    <td>{!! $post->noi_dung !!}</td>
                     <td>{{$post->tac_gia}}</td>
                     <td>{{$post->da_duyet}}</td>
                     <td>{{$post->nguoi_duyet}}</td>

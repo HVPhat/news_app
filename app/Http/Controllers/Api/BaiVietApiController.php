@@ -1,11 +1,12 @@
 <?php
 
-namespace news_app\Http\Controllers;
+namespace news_app\Http\Controllers\Api;
 
+use news_app\BaiViet;
 use Illuminate\Http\Request;
-use news_app\User;
+use news_app\Http\Controllers\Controller;
 
-class UserController extends Controller
+class BaiVietApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,12 @@ class UserController extends Controller
     public function index()
     {
         //
-        //$user=Auth::user();
-        $users=User::all();
-        return view('user_table', ['users'=>$users]);
+        $baiViet=BaiViet::all();
+        
+        return response()->json([
+            'baiViet'  => $baiViet
+        ]);
+
     }
 
     /**
@@ -28,7 +32,6 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('add_user');
     }
 
     /**
@@ -40,14 +43,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $user=User::create([
-            'name'=>$request['name'],
-            'email'=>$request['email'],
-            'password'=>$request['password'],
-            'phone'=>$request['phone'],
-            'is_admin'=>$request['is_admin']
-        ]);
-        return redirect()->route('user.tables');
     }
 
     /**
@@ -70,8 +65,6 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        $user=User::find($id);
-        return view('edit_user',$user);
     }
 
     /**
@@ -84,13 +77,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user=User::find($id);
-        $user->name=$request['name'];
-        $user->email=$request['email'];
-        $user->phone=$request['phone'];
-        $user->password=bcrypt($request['password']);
-        $user->save();
-        return redirect()->route('user.tables');
     }
 
     /**
@@ -102,20 +88,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        $user=User::find($id);
-        $user->delete();
-        return redirect()->route('user.tables');
-    }
-
-    public function DanhSachBaiViet($id)
-    {
-        $dsBaiViet = User::find($id)->DsBaiViet;
-        return view('bai_viet_cua_user_table',['dsBaiViet'=>$dsBaiViet]);
-    }
-
-    public function API()
-    {
-        $user = User::all();
-        return $user;
     }
 }
