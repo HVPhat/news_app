@@ -46,7 +46,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-6">
+          <div class="col-md-6">
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">DataTable with minimal features & hover style</h3>
@@ -70,6 +70,8 @@
                   @endforeach
                   </tbody>
                 </table>
+                <button class="btn btn-primary"> Xóa bài viết</button> 
+                <a href="{{ route('baocaobaiviet.xoabaocao', [$baiViet->id]) }}"> <button class="btn btn-primary"> Giữ lại bài viết </button> </a>
               </div>
 
               <!-- /.card-body -->
@@ -79,18 +81,22 @@
             <!-- /.card -->
           </div>
           <!-- /.col -->
-          <div class="col-6">
-              <h1>
-                  {{$baiViet->tieu_de}}
-              </h1>
-              <p>
-                  {{$baiViet->noi_dung}}
-              </p>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h1>
+                    {{$baiViet->tieu_de}}
+                </h1>
+              </div>
+              <div class="card-body">
+                <p>
+                    {!! $baiViet->noi_dung !!}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <!-- /.row -->
-        <button class="btn btn-primary"> Xóa bài viết</button> 
-        <a href="{{ route('baocaobaiviet.xoabaocao', [$baiViet->id]) }}"> <button class="btn btn-primary"> Giữ lại bài viết </button> </a>
       </div>
       <!-- /.container-fluid -->
     </section>

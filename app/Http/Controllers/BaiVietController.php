@@ -4,7 +4,9 @@ namespace news_app\Http\Controllers;
 
 use news_app\BaiViet;
 use news_app\ChuDe;
+use news_app\User;
 use Illuminate\Http\Request;
+use DB;
 
 
 class BaiVietController extends Controller
@@ -17,8 +19,12 @@ class BaiVietController extends Controller
     public function index()
     {
         //
+        /*$bai_viets=DB::table('bai_viets')
+                    ->join('users','users.id','=','bai_viets.tac_gia')
+                    ->join('chu_des','chu_des.id','=','bai_viets.chu_de')
+                    ->select('bai_viets.*','users.name as ten_tac_gia', 'chu_des.ten_chu_de')->get();*/
         $bai_viets=BaiViet::all();
-        return view('post', ['bai_viets'=>$bai_viets]);
+        return view('bai_viet\post', ['bai_viets'=>$bai_viets]);
     }
 
     /**
@@ -70,9 +76,11 @@ class BaiVietController extends Controller
      * @param  \news_app\BaiViet  $baiViet
      * @return \Illuminate\Http\Response
      */
-    public function show(BaiViet $baiViet)
+    public function show($id)
     {
         //
+        $bai_viet=BaiViet::find($id);
+        return view('bai_viet\detail_post',$bai_viet);
     }
 
     /**
@@ -86,7 +94,7 @@ class BaiVietController extends Controller
         //
 
         $bai_viets=BaiViet::find($id);
-        return view('edit_post',$bai_viets);
+        return view('bai_viet\edit_post',$bai_viets);
     }
 
     /**
@@ -137,9 +145,10 @@ class BaiVietController extends Controller
     public function approval($id)
     {
         //
-        $bai_viets=BaiViet::find($id);
-        $bai_viets->da_duyet = 1;
-        $bai_viets->save();
+        $bai_viet=BaiViet::find($id);
+        $bai_viet->da_duyet = 1;
+        $bai_viet->nguoi_duyet = auth()->user()->id;
+        $bai_viet->save();
         return redirect()->route('post.tables');
     }
     

@@ -16,7 +16,7 @@ class ChuDeController extends Controller
     {
         //
         $chuDes=ChuDe::all();
-        return view('chu_de_table', ['chuDes'=>$chuDes]);
+        return view('chu_de\chu_de_table', ['chuDes'=>$chuDes]);
     }
 
     /**
@@ -27,7 +27,7 @@ class ChuDeController extends Controller
     public function create()
     {
         //
-        return view('add_chu_de');
+        return view('chu_de\add_chu_de');
     }
 
     /**
@@ -39,10 +39,10 @@ class ChuDeController extends Controller
     public function store(Request $request)
     {
         //
-        $user=CHuDe::create([
+        $user=ChuDe::create([
             'ten_chu_de'=>$request['ten_chu_de'],
         ]);
-        return redirect()->route('chude.tables');
+        return redirect()->route('chude.index');
     }
 
     /**
@@ -62,9 +62,11 @@ class ChuDeController extends Controller
      * @param  \news_app\ChuDe  $chuDe
      * @return \Illuminate\Http\Response
      */
-    public function edit(ChuDe $chuDe)
+    public function edit($id)
     {
         //
+        $chuDe=ChuDe::find($id);
+        return view('chu_de\edit_chu_de', $chuDe);
     }
 
     /**
@@ -77,6 +79,7 @@ class ChuDeController extends Controller
     public function update(Request $request, ChuDe $chuDe)
     {
         //
+        return "Update chu de";
     }
 
     /**
@@ -88,5 +91,6 @@ class ChuDeController extends Controller
     public function destroy(ChuDe $chuDe)
     {
         //
+        return "Destroy chu de";
     }
 }

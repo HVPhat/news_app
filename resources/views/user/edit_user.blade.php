@@ -53,28 +53,25 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('user.store') }}" method="POST">
+              <form action="{{ route('user.update',$id) }}" method="POST">
                 @csrf
+                <input name="_method" type="hidden" value="PUT">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputPassword1">User Name</label>
-                    <input type="text" class="form-control" name="name" id="exampleInputPassword1" placeholder="User Name">
+                    <input type="text" class="form-control" name="name" id="exampleInputPassword1" value="{{ $name }}">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="exampleInputPassword1" placeholder="Phone">
+                    <input type="text" class="form-control" name="phone" id="exampleInputPassword1" value="{{ $phone }}">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email">
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" value="{{ $email }}">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="is_admin" value="1" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Admin</label>
+                    <input type="text" class="form-control" name="password" id="exampleInputPassword1" value="{{ $password }}">
                   </div>
                 </div>
                 <!-- /.card-body -->

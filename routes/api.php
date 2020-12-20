@@ -17,3 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get("/baiviet","Api\BaiVietApiController@index");
+Route::get("/baiviet/chitiet/{id}", "Api\BaiVietApiController@");

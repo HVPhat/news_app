@@ -29,16 +29,13 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-3">
-            <h1>Người dùng</h1>
-          </div>
-          <div class="col-sm-3">
-            <a href="{{ route('user.add') }}"><button class="btn btn-primary" >Thêm người dùng </button> </a>
+          <div class="col-sm-6">
+            <h1>Bài viết</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Người dùng</li>
+              <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+              <li class="breadcrumb-item active">Bài viết</li>
             </ol>
           </div>
         </div>
@@ -52,29 +49,35 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Danh sách người dùng </h3>
-              </div>
+              <a href="{{ route('post.add')}}" class="btn btn-primary">Thêm</a>
+					<!-- The Modal -->
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Tên</th>
-                    <th>Email</th>
-                    <th>SĐT</th>
-                    <th></th>
+                    <th>Tiêu đề</th>
+                    <th>Chủ đề</th>
+                    <th>Hình ảnh</th>
+                    <th>Tác giả</th>
+                    <th>Duyệt bởi</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($users as $user)
+                  @foreach($bai_viets as $post)
                   <tr>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->phone}}</td>
+                    <td>{{$post->tieu_de}}</td>
+                    <td>{{$post->ChuDe->ten_chu_de}}</td>
+                    <td><img src="{{url('/img/')}}/{{$post->hinh_anh}}" alt="Image" width="150" height="100"/></td>
+                    <td>{{$post->TacGia->name}}</td>
+                    <td>{{$post->Nguoiduyet->name}}</td>
                     <td>
-                      <a href=" {{ route('user.edit', [$user->id]) }} " class="btn btn-primary">Sửa</a>
-                      <a href=" {{ route('user.delete', [$user->id]) }} " class="btn btn-primary">Xóa</a>
-                      <a href=" {{ route('user.dsbaiviet', [$user->id]) }} " class="btn btn-primary">XemDSBV</a>
+                    @if($post->da_duyet==0)
+                      <a href="{{ route('post.approval', [$post->id]) }}" class="btn btn-success">Duyệt</a>
+                    @endif
+                      <a href="{{ route('post.show', [$post->id]) }}" class="btn btn-info">Xem chi tiết</a>
+                      <a href="{{ route('post.edit', [$post->id]) }}" class="btn btn-primary">Chỉnh sửa</a>
+                      <a href="{{ route('post.delete', [$post->id]) }}" class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>
                   @endforeach

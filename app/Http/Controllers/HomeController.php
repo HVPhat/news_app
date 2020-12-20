@@ -4,6 +4,10 @@ namespace news_app\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use news_app\Http\Requests\LoginFormRequest;
+use news_app\User;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Input;
 
 
 class HomeController extends Controller
@@ -30,8 +34,7 @@ class HomeController extends Controller
     }    
     public function dashboard()
     {
-        $user = Auth::user();
-        return view('dashboard', ['user'=>$user]);
+        return view('dashboard');
     }
 
     public function logout()
@@ -39,16 +42,15 @@ class HomeController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
-    public function login(Request $request)
+    public function login(LoginFormRequest $request)
     {
         $arr=[
         'email' => $request->email,
         'password' => $request->password,
-        'is_admin' => 1
         ];
         $credentials = $request->only('email', 'password');
         $remember = $request->remeber;
-        if($request->remember!=null)
+        /*if($request->remember!=null)
             if (Auth::attempt($arr, true)) {
                 // Authentication passed...
                 //return $request->remember!=null;
@@ -58,15 +60,13 @@ class HomeController extends Controller
                 var_dump($arr);
                 return 'Dang nhap that bai';
             }
-        else
-            if (Auth::attempt($arr)) {
+        else*/
+            if (Auth::attempt($credentials,$request->remeber)) {
                 // Authentication passed...
                 //return $arr;
                 return redirect()->route('dashboard');
             }
-            else{
-                var_dump($arr);
-                return 'Dang nhap that bai';
-            }
+            $errors = new MessageBag(['login' => ['Email and/or password invalid.']]);
+            return redirect()->route('login')->withErrors($errors);
     }
 }

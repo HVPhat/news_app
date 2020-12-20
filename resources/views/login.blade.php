@@ -21,17 +21,23 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href=""><b>Admin</b>LTE</a>
   </div>
+
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+    @if($errors->has('login'))
+        <p class="login-box-msg">
+          <strong class="text-danger">{{ $errors->first('login') }}</strong>
+        </p>
+    @else
       <p class="login-box-msg">Sign in to start your session</p>
-
+    @endif
       <form action="{{ route('login') }}" method="post">
       @csrf
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
+          <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ $errors->has('email') ? $errors->first('email') : 'Email' }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -39,7 +45,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ $errors->has('password') ? $errors->first('password') : 'Password' }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -49,7 +55,7 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember" name="remember" value="1">
+              <input type="checkbox" id="remember" name="remember" value="true">
               <label for="remember">
                 Remember Me
               </label>
@@ -62,6 +68,7 @@
           <!-- /.col -->
         </div>
       </form>
+      
 
       <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>

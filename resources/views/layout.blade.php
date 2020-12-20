@@ -172,7 +172,7 @@ to get the desired effect
             </a>
 
           <li class="nav-item has-treeview">
-            <a href="{{ route('user.tables') }}" class="{{ request()->is('user/*') ? 'nav-link active' : 'nav-link' }}">
+            <a href="{{ route('user.index') }}" class="{{ (request()->is('user')||request()->is('user/*')) ? 'nav-link active' : 'nav-link' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Người dùng
@@ -181,7 +181,7 @@ to get the desired effect
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="{{ route('chude.tables') }}" class="{{ request()->is('chude/*') ? 'nav-link active' : 'nav-link' }}">
+            <a href="{{ route('chude.index') }}" class="{{ (request()->is('chude/*')||request()->is('chude')) ? 'nav-link active' : 'nav-link' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Chủ đề
@@ -190,7 +190,7 @@ to get the desired effect
           </li>
           
           <li class="nav-item">
-            <a href="{{ route('post.tables') }}" class="{{ request()->is('baiviet/*') ? 'nav-link active' : 'nav-link' }}">
+            <a href="{{ route('post.index') }}" class="{{ request()->is('baiviet/*') ? 'nav-link active' : 'nav-link' }}">
               <i class="nav-icon fas fa-file"></i>
               <p>
                 Bài Viết

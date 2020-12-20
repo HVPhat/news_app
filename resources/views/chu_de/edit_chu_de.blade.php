@@ -28,12 +28,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tạo bài viết</h1>
+            <h1>Chỉnh sửa bài viết</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Tạo bài viết</li>
+              <li class="breadcrumb-item active">Chỉnh sửa bài viết</li>
             </ol>
           </div>
         </div>
@@ -53,43 +53,19 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('chude.update',$id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input name="_method" type="hidden" value="PUT">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputTitle">Tiêu đề</label>
-                    <input type="text" class="form-control" name="tieu_de" id="exampleInputTitle" placeholder="Title">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputTopic">Chủ đề</label>
-                    <select class="form-control" name="chu_de" id="chu_de">
-                    @foreach($chuDe as $chuDe)
-                    {
-                      <option value="{{$chuDe->id}}">{{$chuDe->ten_chu_de}}</option>
-                    }
-                    @endforeach
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputImages">Hình ảnh</label>
-                    <div class="custom-file">
-                        <input accept="*.png|*.jpg|*.jpeg" type="file" class="custom-file-input" id="hinh_anh" name="hinh_anh" />
-                        <label class=" custom-file-label" for="hinh_anh">Chọn hình</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputContent">Nội dung</label>
-                    <textarea type="text" class="form-control" name="noi_dung" id="editor" placeholder="Content"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputWriter">Tác giả</label>
-                    <input type="text" class="form-control" name="tac_gia" id="exampleInputWriter" placeholder="Writer">
+                    <label for="exampleInputTitle">Tên chủ đề</label>
+                    <input type="text" class="form-control" name="tieu_de" id="exampleInputTitle" value="{{ $ten_chu_de }}" placeholder="Title">
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Đăng</button>
+                  <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </div>
               </form>
             </div>
@@ -120,12 +96,12 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 <script src="{{ asset('dist/js/build/ckeditor.js') }}"></script>
+  
 <script type="text/javascript">
 $(document).ready(function () {
   bsCustomFileInput.init();
 });
 </script>
-
 <script>
         function readURL(input, idImg) {
             if (input.files && input.files[0]) {
@@ -140,8 +116,6 @@ $(document).ready(function () {
             readURL(this, '#imgPro');
         });
   </script>
-
-  
 <script>
         ClassicEditor
             .create(document.querySelector('#editor'), {

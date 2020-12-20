@@ -22,6 +22,6 @@ class BaiViet extends Model
         return $this->belongsTo('news_app\ChuDe','chu_de','id');
     }
     public function Nguoiduyet(){
-        return $this->belongsTo('news_app\User','tac_gia','id');
+        return $this->belongsTo('news_app\User','nguoi_duyet','id');
     }
 }

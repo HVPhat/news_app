@@ -30,15 +30,15 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-3">
-            <h1>Chủ đề</h1>
+            <h1>Người dùng</h1>
           </div>
           <div class="col-sm-3">
-          <a href="{{ route('chude.add') }}"><button class="btn btn-primary" >Thêm bài viết </button> </a>
+            <a href="{{ route('user.create') }}"><button class="btn btn-primary" >Thêm người dùng </button> </a>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item active">Người dùng</li>
             </ol>
           </div>
         </div>
@@ -52,25 +52,36 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                <h3 class="card-title">Danh sách người dùng </h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Tên chủ đề</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>SĐT</th>
                     <th></th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($chuDes as $chuDe)
+                  @foreach($users as $user)
                   <tr>
-                    <td>{{$chuDe->ten_chu_de}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->phone}}</td>
                     <td>
-                    <a href="{{ route('chude.edit', [$chuDe->id]) }}"> <button class="btn btn-primary"> Sửa </button></a>
-                    <a href="{{ route('chude.delete', [$chuDe->id]) }}"> <button class="btn btn-primary"> Xóa </button></a> </td>
-                    </tr>
+                      <a href=" {{ route('user.edit', [$user->id]) }} " class="btn btn-primary">Sửa</a>
+                      <form style="display: inline" action="{{ route('user.destroy', [$user]) }}" method="POST">
+                          @method('DELETE')
+                          @csrf
+                          <button class="btn btn-primary">Xóa</button>
+                      </form>
+                      <a href=" {{ route('user.dsbaiviet', [$user->id]) }} " class="btn btn-primary">XemDSBV</a>
+
+                    </td>
+                  </tr>
                   @endforeach
                   </tbody>
                 </table>

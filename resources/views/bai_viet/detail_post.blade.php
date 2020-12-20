@@ -29,11 +29,8 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-3">
-            <h1>Chủ đề</h1>
-          </div>
-          <div class="col-sm-3">
-          <a href="{{ route('chude.add') }}"><button class="btn btn-primary" >Thêm chủ đề </button> </a>
+          <div class="col-sm-6">
+            <h1>Chi tiết bài viết</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -52,28 +49,11 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                <h3 class="card-title">{{ $tieu_de }}</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th>Tên chủ đề</th>
-                    <th></th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  @foreach($chuDes as $chuDe)
-                  <tr>
-                    <td>{{$chuDe->ten_chu_de}}</td>
-                    <td>
-                    <a href="{{ route('chude.edit', [$chuDe->id]) }}"> <button class="btn btn-primary"> Sửa </button></a>
-                    <a href="{{ route('chude.delete', [$chuDe->id]) }}"> <button class="btn btn-primary"> Xóa </button></a> </td>
-                    </tr>
-                  @endforeach
-                  </tbody>
-                </table>
+              {!! $noi_dung !!}
               </div>
               <!-- /.card-body -->
             </div>

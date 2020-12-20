@@ -21,7 +21,7 @@ class BaoCaoBaiVietController extends Controller
         $baiViets=DB::select('select distinct bai_viet,tieu_de from bai_viets,bao_cao_bai_viets
                               where bao_cao_bai_viets.deleted_at is null and bai_viets.id = bao_cao_bai_viets.bai_viet');
 
-        return view('bao_cao_bai_viet_table', ['baiViets'=>$baiViets]);
+        return view('bao_cao_bai_viet\bao_cao_bai_viet_table', ['baiViets'=>$baiViets]);
     }
 
     /**
@@ -65,7 +65,7 @@ class BaoCaoBaiVietController extends Controller
             'baoCaos'=>$baoCaos,
             'baiViet'=>$baiViet
         ];
-        return view('chi_tiet_bao_cao_bai_viet',$data);
+        return view('bao_cao_bai_viet\chi_tiet_bao_cao_bai_viet',$data);
     }
 
     /**

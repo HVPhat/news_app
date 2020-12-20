@@ -2,8 +2,10 @@
 
 namespace news_app\Http\Controllers;
 
+use news_app\Http\Requests\UserFormSubmitRequest;
 use Illuminate\Http\Request;
 use news_app\User;
+
 
 class UserController extends Controller
 {
@@ -17,7 +19,7 @@ class UserController extends Controller
         //
         //$user=Auth::user();
         $users=User::all();
-        return view('user_table', ['users'=>$users]);
+        return view('user\user_table', ['users'=>$users]);
     }
 
     /**
@@ -28,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('add_user');
+        return view('user\add_user');
     }
 
     /**
@@ -37,17 +39,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormSubmitRequest $request)
     {
         //
-        $user=User::create([
-            'name'=>$request['name'],
-            'email'=>$request['email'],
-            'password'=>$request['password'],
-            'phone'=>$request['phone'],
-            'is_admin'=>$request['is_admin']
+        $validation = $request->validate([
+            'name'=>'required',
+            'email'=>'required | unique:users,email',
+            'password'=>'required',
+            'phone'=>'required | min:11',
         ]);
-        return redirect()->route('user.tables');
+        $user=User::create($validation);
+        return redirect()->route('user.index');
     }
 
     /**
@@ -71,7 +73,7 @@ class UserController extends Controller
     {
         //
         $user=User::find($id);
-        return view('edit_user',$user);
+        return view('user\edit_user',$user);
     }
 
     /**
@@ -90,32 +92,28 @@ class UserController extends Controller
         $user->phone=$request['phone'];
         $user->password=bcrypt($request['password']);
         $user->save();
-        return redirect()->route('user.tables');
+        return redirect()->route('user.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param   \news_app\User
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
-        $user=User::find($id);
+        return $user;
+        /*$user=User::find($user->id);
         $user->delete();
-        return redirect()->route('user.tables');
+        return redirect()->route('user.index');*/
     }
 
     public function DanhSachBaiViet($id)
     {
         $dsBaiViet = User::find($id)->DsBaiViet;
-        return view('bai_viet_cua_user_table',['dsBaiViet'=>$dsBaiViet]);
+        return view('user\bai_viet_cua_user_table',['dsBaiViet'=>$dsBaiViet]);
     }
 
-    public function API()
-    {
-        $user = User::all();
-        return $user;
-    }
 }
