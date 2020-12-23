@@ -73,7 +73,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputContent">Nội dung</label>
-                    <textarea type="text" class="form-control" name="noi_dung" id="editor" value="{{ $noi_dung }}" placeholder="Content"></textarea>
+                    <textarea type="text" class="form-control" name="noi_dung" id="editor" value="" placeholder="Content">{{$noi_dung }}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputWriter">Tác giả</label>

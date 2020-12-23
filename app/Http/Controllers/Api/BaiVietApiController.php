@@ -54,7 +54,11 @@ class BaiVietApiController extends Controller
     public function show($id)
     {
         //
+        $baiViet=BaiViet::find($id);
         
+        return response()->json([
+            'baiViet'  => $baiViet
+        ]);
     }
 
     /**

@@ -70,7 +70,10 @@
                     <td>{{$post->ChuDe->ten_chu_de}}</td>
                     <td><img src="{{url('/img/')}}/{{$post->hinh_anh}}" alt="Image" width="150" height="100"/></td>
                     <td>{{$post->TacGia->name}}</td>
-                    <td>{{$post->Nguoiduyet->name}}</td>
+                    <td>
+                    @if($post->da_duyet==1)
+                    {{$post->Nguoiduyet->name}}</td>
+                    @endif
                     <td>
                     @if($post->da_duyet==0)
                       <a href="{{ route('post.approval', [$post->id]) }}" class="btn btn-success">Duyệt</a>

@@ -44,10 +44,6 @@ class HomeController extends Controller
     }
     public function login(LoginFormRequest $request)
     {
-        $arr=[
-        'email' => $request->email,
-        'password' => $request->password,
-        ];
         $credentials = $request->only('email', 'password');
         $remember = $request->remeber;
         /*if($request->remember!=null)
@@ -64,7 +60,13 @@ class HomeController extends Controller
             if (Auth::attempt($credentials,$request->remeber)) {
                 // Authentication passed...
                 //return $arr;
-                return redirect()->route('dashboard');
+                if(Auth::user()->is_admin)
+                    return redirect()->route('dashboard');
+                else{
+                    Auth::logout();
+                    $errors = new MessageBag(['login' => ["You don't have permission to login"]]);
+                    return redirect()->route('login')->withErrors($errors);
+                }
             }
             $errors = new MessageBag(['login' => ['Email and/or password invalid.']]);
             return redirect()->route('login')->withErrors($errors);

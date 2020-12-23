@@ -18,7 +18,8 @@ class BaoCaoBaiVietController extends Controller
     public function index()
     {
         //
-        $baiViets=DB::select('select distinct bai_viet,tieu_de from bai_viets,bao_cao_bai_viets
+        $baiViets=DB::select('select distinct bai_viet,tieu_de 
+                              from bai_viets,bao_cao_bai_viets
                               where bao_cao_bai_viets.deleted_at is null and bai_viets.id = bao_cao_bai_viets.bai_viet');
 
         return view('bao_cao_bai_viet\bao_cao_bai_viet_table', ['baiViets'=>$baiViets]);
@@ -101,6 +102,31 @@ class BaoCaoBaiVietController extends Controller
     {
         //
         DB::table('bao_cao_bai_viets')->whereIn('bai_viet', [$baiViet])
+            ->update([
+                'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]);
+        
+            return redirect()->route('baocaobaiviet.tables');
+    }
+    public function XoaBaoCao($baiViet)
+    {
+        //Xoa bao cao cua bai viet
+        DB::table('bao_cao_bai_viets')->whereIn('bai_viet', [$baiViet])
+            ->update([
+                'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]);
+        
+            return redirect()->route('baocaobaiviet.tables');
+    }
+    public function XoaBaiViet($baiViet)
+    {
+        //Xoa bao cao cua bai viet
+        DB::table('bao_cao_bai_viets')->whereIn('bai_viet', [$baiViet])
+        ->update([
+            'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        //Xoa bai viet duoc bao cao
+        DB::table('bai_viets')->whereIn('id', [$baiViet])
             ->update([
                 'deleted_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);

@@ -52,5 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/baocao/baiviet/{id}','BaoCaoBaiVietController@show')->name('baocaobaiviet.chitietbaocao');
     
-    Route::get('/baocao/baiviet/xoa/{id}','BaoCaoBaiVietController@destroy')->name('baocaobaiviet.xoabaocao');
+    Route::get('/baocao/baiviet/xoabaocao/{id}','BaoCaoBaiVietController@XoaBaoCao')->name('baocaobaiviet.xoabaocao');
+
+    Route::get('/baocao/baiviet/xoabaiviet/{id}','BaoCaoBaiVietController@XoaBaiViet')->name('baocaobaiviet.xoabaiviet');
 });

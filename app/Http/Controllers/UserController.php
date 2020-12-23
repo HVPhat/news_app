@@ -42,12 +42,13 @@ class UserController extends Controller
     public function store(UserFormSubmitRequest $request)
     {
         //
-        $validation = $request->validate([
+        /*$validation = $request->validate([
             'name'=>'required',
             'email'=>'required | unique:users,email',
             'password'=>'required',
             'phone'=>'required | min:11',
-        ]);
+        ]);*/
+        $validation=$request->all();
         $user=User::create($validation);
         return redirect()->route('user.index');
     }

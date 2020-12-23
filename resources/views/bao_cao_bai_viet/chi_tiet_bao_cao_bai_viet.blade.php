@@ -70,7 +70,7 @@
                   @endforeach
                   </tbody>
                 </table>
-                <button class="btn btn-primary"> Xóa bài viết</button> 
+                <a href="{{ route('baocaobaiviet.xoabaiviet', [$baiViet->id]) }}"> <button class="btn btn-primary"> Xóa bài viết</button> </a>
                 <a href="{{ route('baocaobaiviet.xoabaocao', [$baiViet->id]) }}"> <button class="btn btn-primary"> Giữ lại bài viết </button> </a>
               </div>
 

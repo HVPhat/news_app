@@ -7,6 +7,7 @@ use news_app\ChuDe;
 use news_app\User;
 use Illuminate\Http\Request;
 use DB;
+use news_app\Http\Requests\BaiVietFormSubmit;
 
 
 class BaiVietController extends Controller
@@ -36,7 +37,8 @@ class BaiVietController extends Controller
     {
         //
         $chuDe=ChuDe::all();
-        return view('add_post',['chuDe'=>$chuDe]);
+        $User=User::all();
+        return view('bai_viet\add_post',['chuDe'=>$chuDe], ['User'=>$User]);
     }
 
     /**
@@ -45,7 +47,7 @@ class BaiVietController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BaiVietFormSubmit $request)
     {
         if($request->hasFile('hinh_anh'))
         {
@@ -64,8 +66,7 @@ class BaiVietController extends Controller
             'chu_de'=>$request['chu_de'],
             'hinh_anh'=>$filenameToStore,
             'noi_dung'=>$request['noi_dung'],
-            'tac_gia'=>$request['tac_gia'],
-            'nguoi_duyet'=>$request['tac_gia']
+            'tac_gia'=>$request['tac_gia']
         ]);
         return redirect()->route('post.tables');
     }
@@ -94,7 +95,9 @@ class BaiVietController extends Controller
         //
 
         $bai_viets=BaiViet::find($id);
-        return view('bai_viet\edit_post',$bai_viets);
+        $chuDe=ChuDe::all();
+        $User=User::all();
+        return view('bai_viet\edit_post',$bai_viets,['chuDe'=>$chuDe], ['User'=>$User]);
     }
 
     /**
