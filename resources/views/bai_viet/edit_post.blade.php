@@ -58,26 +58,51 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputTitle">Tiêu đề</label>
-                    <input type="text" class="form-control" name="tieu_de" id="exampleInputTitle" value="{{ $tieu_de }}" placeholder="Title">
+                    <input type="text" class="form-control{{ $errors->has('tieu_de') ? ' is-invalid' : ''}}" name="tieu_de" id="exampleInputTitle" value="{{ $tieu_de }}" placeholder="Title">
+                    @if($errors->has('tieu_de'))
+                              <p>{{ $errors->first('tieu_de') }}</p>
+                    @endif
                   </div>
                   <div class="form-group">
                     <label for="exampleInputTopic">Chủ đề</label>
-                    <input type="text" class="form-control" name="chu_de" id="exampleInputTopic" value="{{ $chu_de }}" placeholder="Topic">
+                    <select type="text" class="form-control" name="chu_de" id="exampleInputTopic" value="{{ $chu_de }}" placeholder="Topic">
+                    @foreach($chuDe as $chuDe)
+                    {
+                      @if ($chuDe->delete_at == NULL)
+                      <option value="{{$chuDe->id}}">{{$chuDe->ten_chu_de}}</option>
+                      @endif
+                    }
+                    @endforeach
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputImages">Hình ảnh</label>
                     <div class="custom-file">
-                        <input accept="*.png|*.jpg|*.jpeg" type="file" class="custom-file-input" value = "{{ $hinh_anh }} " id="hinh_anh" name="hinh_anh" />
+                        <input accept="*.png|*.jpg|*.jpeg" type="file" class="custom-file-input{{ $errors->has('hinh_anh') ? ' is-invalid' : ''}}" id="hinh_anh" name="hinh_anh" />
                         <label class=" custom-file-label" for="hinh_anh">Chọn hình</label>
                     </div>
+                    @if($errors->has('hinh_anh'))
+                          <p>{{ $errors->first('hinh_anh') }}</p>
+                    @endif
                   </div>
                   <div class="form-group">
                     <label for="exampleInputContent">Nội dung</label>
-                    <textarea type="text" class="form-control" name="noi_dung" id="editor" value="" placeholder="Content">{{$noi_dung }}</textarea>
+                    <textarea type="text" class="form-control{{ $errors->has('noi_dung') ? ' is-invalid' : ''}}" name="noi_dung" id="editor" value="" placeholder="Content">{{$noi_dung }}</textarea>
+                    @if($errors->has('noi_dung'))
+                              <p>{{ $errors->first('noi_dung') }}</p>
+                    @endif
                   </div>
                   <div class="form-group">
                     <label for="exampleInputWriter">Tác giả</label>
-                    <input type="text" class="form-control" name="tac_gia" id="exampleInputWriter" value="{{ $tac_gia }}" placeholder="Writer">
+                    <select type="text" class="form-control" name="tac_gia" id="exampleInputWriter" value="{{ $tac_gia }}" placeholder="Writer">
+                    @foreach($User as $User)
+                    {
+                      @if ($User->delete_at == NULL)
+                      <option value="{{$User->id}}">{{$User->name}}</option>
+                      @endif
+                    }
+                    @endforeach
+                    </select>
                   </div>
                 </div>
                 <!-- /.card-body -->

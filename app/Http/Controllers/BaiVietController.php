@@ -68,7 +68,7 @@ class BaiVietController extends Controller
             'noi_dung'=>$request['noi_dung'],
             'tac_gia'=>$request['tac_gia']
         ]);
-        return redirect()->route('post.tables');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -97,7 +97,7 @@ class BaiVietController extends Controller
         $bai_viets=BaiViet::find($id);
         $chuDe=ChuDe::all();
         $User=User::all();
-        return view('bai_viet\edit_post',$bai_viets,['chuDe'=>$chuDe], ['User'=>$User]);
+        return view('bai_viet\edit_post', $bai_viets,['chuDe'=>$chuDe,'User'=>$User]);
     }
 
     /**
@@ -107,7 +107,7 @@ class BaiVietController extends Controller
      * @param  \news_app\BaiViet  $baiViet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BaiVietFormSubmit $request, $id)
     {
         //
         if($request->hasFile('hinh_anh'))
@@ -129,7 +129,7 @@ class BaiVietController extends Controller
         $bai_viets->noi_dung=$request['noi_dung'];
         $bai_viets->tac_gia=$request['tac_gia'];
         $bai_viets->save();
-        return redirect()->route('post.tables');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -143,7 +143,7 @@ class BaiVietController extends Controller
         //
         $bai_viets=BaiViet::find($id);
         $bai_viets->delete();
-        return redirect()->route('post.tables');
+        return redirect()->route('post.index');
     }
     public function approval($id)
     {
@@ -152,18 +152,6 @@ class BaiVietController extends Controller
         $bai_viet->da_duyet = 1;
         $bai_viet->nguoi_duyet = auth()->user()->id;
         $bai_viet->save();
-        return redirect()->route('post.tables');
-    }
-    
-    public function TacGia()
-    {
-        $tacGia = BaiViet::find(2)->TacGia;
-        return ($tacGia);
-    }
-
-    public function ChuDe($id)
-    {
-        $chuDe = BaiViet::find($id)->ChuDe;
-        return ($chuDe);
+        return redirect()->route('post.index');
     }
 }

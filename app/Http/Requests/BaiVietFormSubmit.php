@@ -28,7 +28,6 @@ class BaiVietFormSubmit extends FormRequest
             'hinh_anh' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tieu_de' => 'required',
             'noi_dung' => 'required',
-            'tac_gia' => 'required'
         ];
     }
 }

@@ -26,25 +26,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user/dsbaiviet/{id}','UserController@DanhSachBaiViet')->name('user.dsbaiviet');
 
     Route::resource('chude','ChuDeController');
-
+    //Route Resource BaiVietController
     Route::resource('post','BaiVietController');
-
-    Route::get('/baiviet/tables','BaiVietController@index')->name('baiviet.tables');
-
-    //Lấy ra danh sách bài viết hiện có
-    Route::get('/baiviet/tables','BaiVietController@index')->name('post.tables');
-    //Trả về view thêm bài viết
-    Route::get('/baiviet/add','BaiVietController@create')->name('post.add');
-    //Lấy ra chi tiết bài viết 
-    Route::get('baiviet/chitiet/{id}','BaiVietController@show')->name('post.show');
-    //Xử lí thêm bài viết
-    Route::post('/baiviet/store','BaiVietController@store')->name('post.store');
-    //Trả về view chỉnh sửa thông tin bài viết 
-    Route::get('/baiviet/edit/{id}','BaiVietController@edit')->name('post.edit');
-    //Xử lí chỉnh sửa thông tin bài viết 
+    //Xử lí chỉnh sửa thông tin bài viết, function update k hỗ trợ method POST
     Route::post('/baiviet/update/{id}','BaiVietController@update')->name('post.update');
-    //Xử lí xóa bài viết
-    Route::get('/baiviet/delete/{id}','BaiVietController@destroy')->name('post.delete');
     //Xử lí duyệt bài viết
     Route::get('/baiviet/approval/{id}','BaiVietController@approval')->name('post.approval');
 

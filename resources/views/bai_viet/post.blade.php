@@ -49,7 +49,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-              <a href="{{ route('post.add')}}" class="btn btn-primary">Thêm</a>
+              <a href="{{ route('post.create')}}" class="btn btn-primary">Thêm</a>
 					<!-- The Modal -->
               <!-- /.card-header -->
               <div class="card-body">
@@ -80,7 +80,11 @@
                     @endif
                       <a href="{{ route('post.show', [$post->id]) }}" class="btn btn-info">Xem chi tiết</a>
                       <a href="{{ route('post.edit', [$post->id]) }}" class="btn btn-primary">Chỉnh sửa</a>
-                      <a href="{{ route('post.delete', [$post->id]) }}" class="btn btn-danger">Xóa</a>
+                      <form style="display: inline" action="{{ route('post.destroy', [$post->id]) }}" method="POST">
+                          @method('DELETE')
+                          @csrf
+                          <button class="btn btn-primary">Xóa</button>
+                      </form>
                     </td>
                   </tr>
                   @endforeach

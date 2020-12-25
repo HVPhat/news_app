@@ -68,7 +68,9 @@
                     <select class="form-control" name="chu_de" id="chu_de">
                     @foreach($chuDe as $chuDe)
                     {
+                      @if ($chuDe->delete_at == NULL)
                       <option value="{{$chuDe->id}}">{{$chuDe->ten_chu_de}}</option>
+                      @endif
                     }
                     @endforeach
                     </select>
