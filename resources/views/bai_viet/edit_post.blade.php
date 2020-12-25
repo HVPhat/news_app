@@ -78,8 +78,8 @@
                   <div class="form-group">
                     <label for="exampleInputImages">Hình ảnh</label>
                     <div class="custom-file">
-                        <input accept="*.png|*.jpg|*.jpeg" type="file" class="custom-file-input{{ $errors->has('hinh_anh') ? ' is-invalid' : ''}}" id="hinh_anh" name="hinh_anh" />
-                        <label class=" custom-file-label" for="hinh_anh">Chọn hình</label>
+                        <input accept="*.png|*.jpg|*.jpeg" type="file" value="{{$hinh_anh}}" class="custom-file-input{{ $errors->has('hinh_anh') ? ' is-invalid' : ''}}" id="hinh_anh" name="hinh_anh" />
+                        <label class=" custom-file-label" for="hinh_anh" >{{$hinh_anh}}</label>
                     </div>
                     @if($errors->has('hinh_anh'))
                           <p>{{ $errors->first('hinh_anh') }}</p>

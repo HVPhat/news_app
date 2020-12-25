@@ -125,8 +125,8 @@ class BaiVietController extends Controller
         $bai_viets=BaiViet::find($id);
         $bai_viets->tieu_de=$request['tieu_de'];
         $bai_viets->chu_de=$request['chu_de'];
-        $bai_viets->hinh_anh=$filenameToStore;
         $bai_viets->noi_dung=$request['noi_dung'];
+        $bai_viets->hinh_anh=$filenameToStore;
         $bai_viets->tac_gia=$request['tac_gia'];
         $bai_viets->save();
         return redirect()->route('post.index');
