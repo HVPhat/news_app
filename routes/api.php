@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get("/baiviet","Api\BaiVietApiController@index");
 Route::get("/baiviet/chitiet/{id}", "Api\BaiVietApiController@show");
+Route::get("/chude","Api\ChuDeApiController@index");
