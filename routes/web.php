@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
     //Xử lí duyệt bài viết
     Route::get('/baiviet/approval/{id}','BaiVietController@approval')->name('post.approval');
 
+    //Route Resource BinhLuanController
+    Route::resource('binhluan','BinhLuanController');
+
     Route::get('/baocao/baiviet','BaoCaoBaiVietController@index')->name('baocaobaiviet.tables');
 
     Route::get('/baocao/baiviet/{id}','BaoCaoBaiVietController@show')->name('baocaobaiviet.chitietbaocao');

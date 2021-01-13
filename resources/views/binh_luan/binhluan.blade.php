@@ -30,12 +30,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Bài viết</h1>
+            <h1>Bình luận</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Bài viết</li>
+              <li class="breadcrumb-item active">Bình luận</li>
             </ol>
           </div>
         </div>
@@ -49,42 +49,37 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-              <a href="{{ route('post.create')}}" class="btn btn-primary">Thêm</a>
+              Bài viết: &nbsp;
+              <select name="list_bv" id="single">
+              <option value="0" selected="selected"> Tất cả </option>
+              @foreach($binh_luan as $bl)
+              <option value="{{$bl->thuoc_ve_bai_viet}}"> {{$bl->BaiViet->tieu_de}} </option>
+              @endforeach
+              </select>
 					<!-- The Modal -->
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Tiêu đề</th>
-                    <th>Chủ đề</th>
-                    <th>Hình ảnh</th>
-                    <th>Tác giả</th>
-                    <th>Duyệt bởi</th>
+                    <th>Tên người gửi</th>
+                    <th>Nội dung</th>
+                    <th>Thuộc về bài viết</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($bai_viets as $post)
+                  @foreach($binh_luan as $bl)
                   <tr>
-                    <td>{{$post->tieu_de}}</td>
-                    <td>{{$post->ChuDe->ten_chu_de}}</td>
-                    <td><img src="{{url('/img/')}}/{{$post->hinh_anh}}" alt="Image" width="150" height="100"/></td>
-                    <td>{{$post->TacGia->name}}</td>
+                    <td>{{$bl->TacGia->name}}</td>
+                    <td>{{$bl->noi_dung}}</td>
+                    <td>{{$bl->BaiViet->tieu_de}}</td>
                     <td>
-                    @if($post->da_duyet==1)
-                    {{$post->Nguoiduyet->name}}</td>
-                    @endif
-                    <td>
-                    @if($post->da_duyet==0)
-                      <a href="{{ route('post.approval', [$post->id]) }}" class="btn btn-success">Duyệt</a>
-                    @endif
-                      <a href="{{ route('post.show', [$post->id]) }}" class="btn btn-info">Xem chi tiết</a>
-                      <a href="{{ route('post.edit', [$post->id]) }}" class="btn btn-warning">Chỉnh sửa</a>
-                      <form style="display: inline" action="{{ route('post.destroy', [$post->id]) }}" method="POST">
+                    <form style="display: inline" action="{{ route('binhluan.destroy', [$bl->id]) }}" method="POST">
                           @method('DELETE')
                           @csrf
                           <button class="btn btn-danger">Xóa</button>
-                      </form>
+                    </form>
+                    <a href="{{ route('binhluan.show', [$bl->thuoc_ve_bai_viet]) }}" class="btn btn-info">Xem bài viết</a>
                     </td>
                   </tr>
                   @endforeach

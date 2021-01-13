@@ -173,7 +173,7 @@ to get the desired effect
 
           <li class="nav-item has-treeview">
             <a href="{{ route('user.index') }}" class="{{ (request()->is('user')||request()->is('user/*')) ? 'nav-link active' : 'nav-link' }}">
-              <i class="nav-icon fas fa-table"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Người dùng
               </p>
@@ -207,6 +207,14 @@ to get the desired effect
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="{{ route('binhluan.index') }}" class="{{ request()->is('binhluan/*') ? 'nav-link active' : 'nav-link' }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Bình luận
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

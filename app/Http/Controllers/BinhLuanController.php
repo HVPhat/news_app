@@ -3,6 +3,7 @@
 namespace news_app\Http\Controllers;
 
 use news_app\BinhLuan;
+use news_app\BaiViet;
 use Illuminate\Http\Request;
 
 class BinhLuanController extends Controller
@@ -15,6 +16,8 @@ class BinhLuanController extends Controller
     public function index()
     {
         //
+        $binh_luan=BinhLuan::all();
+        return view('binh_luan\binhluan', ['binh_luan'=>$binh_luan]);
     }
 
     /**
@@ -44,9 +47,11 @@ class BinhLuanController extends Controller
      * @param  \news_app\BinhLuan  $binhLuan
      * @return \Illuminate\Http\Response
      */
-    public function show(BinhLuan $binhLuan)
+    public function show($id)
     {
         //
+        $bai_viet=BaiViet::find($id);
+        return view('bai_viet\detail_post',$bai_viet);
     }
 
     /**
@@ -78,8 +83,11 @@ class BinhLuanController extends Controller
      * @param  \news_app\BinhLuan  $binhLuan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BinhLuan $binhLuan)
+    public function destroy($id)
     {
         //
+        $binh_luan=BinhLuan::find($id);
+        $binh_luan->delete();
+        return redirect()->route('binhluan.index');
     }
 }

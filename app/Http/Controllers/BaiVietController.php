@@ -20,10 +20,6 @@ class BaiVietController extends Controller
     public function index()
     {
         //
-        /*$bai_viets=DB::table('bai_viets')
-                    ->join('users','users.id','=','bai_viets.tac_gia')
-                    ->join('chu_des','chu_des.id','=','bai_viets.chu_de')
-                    ->select('bai_viets.*','users.name as ten_tac_gia', 'chu_des.ten_chu_de')->get();*/
         $bai_viets=BaiViet::all();
         return view('bai_viet\post', ['bai_viets'=>$bai_viets]);
     }
