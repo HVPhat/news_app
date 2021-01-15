@@ -30,12 +30,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Bài viết</h1>
+            <h1>Kết quả tìm kiếm</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Bài viết</li>
+              <li class="breadcrumb-item active">Kết quả tìm kiếm</li>
             </ol>
           </div>
         </div>
@@ -49,8 +49,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-              <a href="{{ route('post.create')}}" class="btn btn-primary">Thêm bài viết</a> &nbsp;
-              <a href="{{ route('post.loadbv')}}" class="btn btn-success">Xem bài viết chưa duyệt</a>
+              <h4 style="color:red">Tìm thấy {{count($search)}} bài viết.</h4>
 					<!-- The Modal -->
               <!-- /.card-header -->
               <div class="card-body">
@@ -65,7 +64,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($bai_viets as $post)
+                  @foreach($search as $post)
                   <tr>
                     <td>{{$post->tieu_de}}</td>
                     <td>{{$post->ChuDe->ten_chu_de}}</td>
@@ -93,7 +92,6 @@
                 </table>
               </div>
               <!-- /.card-body -->
-              <div style="float:right; padding-right:50px">{!! $bai_viets->links() !!}</div>
             </div>
             <!-- /.card -->
 

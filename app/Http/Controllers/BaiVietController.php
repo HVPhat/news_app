@@ -20,7 +20,7 @@ class BaiVietController extends Controller
     public function index()
     {
         //
-        $bai_viets=BaiViet::all();
+        $bai_viets=BaiViet::paginate(4);
         return view('bai_viet\post', ['bai_viets'=>$bai_viets]);
     }
 
@@ -149,5 +149,13 @@ class BaiVietController extends Controller
         $bai_viet->nguoi_duyet = auth()->user()->id;
         $bai_viet->save();
         return redirect()->route('post.index');
+    }
+    public function search(Request $request){
+        $search = BaiViet::where('tieu_de','like','%'.$request->key.'%') ->get();
+        return view('bai_viet\search', compact('search'));
+    }
+    public function loadbv(){
+        $search = BaiViet::where('da_duyet',"0") ->get();
+        return view('bai_viet\search', compact('search'));
     }
 }

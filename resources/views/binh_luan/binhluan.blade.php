@@ -98,6 +98,7 @@
       </div>
       <!-- /.container-fluid -->
     </section>
+    <div style="float:right; padding-right:50px">{!! $binh_luan->links() !!}</div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

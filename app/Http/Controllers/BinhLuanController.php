@@ -16,7 +16,7 @@ class BinhLuanController extends Controller
     public function index()
     {
         //
-        $binh_luan=BinhLuan::all();
+        $binh_luan=BinhLuan::paginate(6);
         return view('binh_luan\binhluan', ['binh_luan'=>$binh_luan]);
     }
 

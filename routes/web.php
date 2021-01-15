@@ -32,10 +32,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/baiviet/update/{id}','BaiVietController@update')->name('post.update');
     //Xử lí duyệt bài viết
     Route::get('/baiviet/approval/{id}','BaiVietController@approval')->name('post.approval');
-
+    //Route Tìm kiếm bài viết
+    Route::get('/search','BaiVietController@search')->name('post.search');
+    //Route Load bài viết chưa duyệt
+    Route::get('/baivietchuaduyet','BaiVietController@loadbv')->name('post.loadbv');
     //Route Resource BinhLuanController
     Route::resource('binhluan','BinhLuanController');
-
     Route::get('/baocao/baiviet','BaoCaoBaiVietController@index')->name('baocaobaiviet.tables');
 
     Route::get('/baocao/baiviet/{id}','BaoCaoBaiVietController@show')->name('baocaobaiviet.chitietbaocao');
